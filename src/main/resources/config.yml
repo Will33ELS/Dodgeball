@@ -1,0 +1,63 @@
+arena:
+  world: "world"
+  arenaZone: "0,0,0:0,0,0"
+  blueZone: "0,0,0:0,0,0"
+  redZone: "0,0,0:0,0,0"
+  blueSpawnLocation: []
+  redSpawnLocation: []
+  ballSpawnLocation: []
+ballItem:
+  displayName: "§bBalle"
+  lore: []
+config:
+  gameDuration: 300
+messages:
+  config:
+    help: "&aUtilisez la commande &b/config start &apour débuter la configuration de l'arène"
+    configurationInProgress: "&cUn joueur configure déjà l'arène !"
+    hoeGlobalCuboid: "&aAvec la houe, définissez la zone global de jeu avec le clic droit et gauche"
+    hoeBlueCuboid: "&aAvec la houe, définissez la zone de jeu de l'équipe &9Bleu &aavec le clic droit et gauche"
+    hoeRedCuboid: "&aAvec la houe, définissez la zone de jeu de l'équipe &cRouge &aavec le clic droit et gauche"
+    addBlueSpawnPoint: "&aAvec la commande &b/config addBlueSpawnPoint &aajouter les positions de spawn des joueurs &9Bleu&a. Une fois terminé, faites &b/config stopBlueSpawnPoint"
+    noConfirm: "&cVous n'avez rien à confirmer."
+    spawnAdded: "&aPoint de spawn ajouté."
+    notInBlueZone: "&cVous devez être dans la zone de l'équipe bleu que vous avez précédemment défini !"
+    minOneBlueSpawn: "&cVous devez définir au moins un point de spawn avec la commande &e/config addBlueSpawnPoint."
+    addRedSpawnPoint: "&aAvec la commande &b/config addRedSpawnPoint &aajouter les positions de spawn des joueurs &cRouge&a. Une fois terminé, faites &b/config stopRedSpawnPoint"
+    notInRedZone: "&cVous devez être dans la zone de l'équipe rouge que vous avez précédemment défini !"
+    minOneRedSpawn: "&cVous devez définir au moins un point de spawn avec la commande &e/config addRedSpawnPoint."
+    addBallSpawnPoint: "&aAvec la commande &b/config addBallSpawnPoint &aajouter les positions de spawn des balles. Une fois terminé, faites &b/config stopBallSpawnPoint"
+    notInPlayZone: "&cVous devez être dans la zone de jeu que vous avez précédemment défini !"
+    minOneBallSpawn: "&cVous devez définir au moins un point de spawn avec la commande &e/config addBallSpawnPoint."
+    success: "&aConfiguration terminée."
+    incompleteConfig: "L'arène n'est pas correctement configuré !"
+  join:
+    gameInProgress: "&cLa partie est en cours !"
+  start:
+    launchGame: "&aLancement de la partie !"
+    gameInProgress: "&cLa partie est déjà en cours !"
+  stop:
+    endGame: "&aArrêt de la partie !"
+    gameNotInProgress: "&cLa partie n'est pas en cours !"
+  youreDeath: "&cVous avez perdu, vous n'avez plus de vie."
+  blueWin: "&aVictoire de l'équipe &9bleu"
+  redWin: "&aVictoire de l'équipe &crouge"
+  equality: "&eEgalité"
+  zone:
+    point1: "&aPoint 1 défini."
+    point2: "&aPoint 2 défini."
+    success: "&aZone complète, effectuez la commande &b/config confirm &apour poursuivre."
+    positionNull: "Les deux positions n'ont pas été défini."
+    worldError: "Les deux positions ne se situent pas dans le même monde."
+gui:
+  join:
+    title: "Sélectionnez une équipe"
+    blueTeam: "&9Equipe bleu"
+    redTeam: "&cEquipe rouge"
+    teamFull: "&cL'équipe est complète."
+    joinBlueTeam: "&aVous avez rejoint l'équipe &9bleu&a."
+    joinRedTeam: "&aVous avez rejoint l'équipe &crouge&a."
+scoreboard:
+  title: "&9Dodgeball"
+  blueTeam: "&9Equipe bleu"
+  redTeam: "&cEquipe rouge"

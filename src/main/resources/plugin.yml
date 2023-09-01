@@ -1,0 +1,15 @@
+main: fr.will33.dodgeball.Dodgeball
+name: Dodgeball
+version: ${project.version}
+api-version: "1.20"
+author: William AVENTIN
+website: "https://www.elesia.org"
+commands:
+  config:
+    description: "Configurer l'arène"
+  join:
+    description: "Rejoindre la partie"
+  start:
+    description: "Lancement de la partie"
+  stop:
+    description: "Arrêt de la partie"
