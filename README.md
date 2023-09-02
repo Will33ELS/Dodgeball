@@ -5,12 +5,12 @@ Les joueurs bénéficient de 2 secondes d'invincibilité après leur respawn. Lo
 ## Commandes :
 - **/config** Pour configurer l'arène
 - **/join** Pour rejoindre une équipe
-- **/start** Pour lancer la partie
-- **/stop** Pour arrêter la partie
+- **/dodgeball start** Pour lancer la partie
+- **/dodgeball stop** Pour arrêter la partie
 
 ## Permissions :
-- **dodgeball.start** Exécuter la commande */start*
-- **dodgeball.stop** Exécuter la commande */stop*
+- **dodgeball.start** Exécuter la commande */dodgeball start*
+- **dodgeball.stop** Exécuter la commande */dodgeball stop*
 
 ## Technique :
 * Java **17**

@@ -32,17 +32,19 @@ public class EntityDamageByEntity implements Listener {
                         if((arena.getBluePlayers().contains(player) && arena.getRedPlayers().contains(shooter)) || (arena.getBluePlayers().contains(shooter) && arena.getRedPlayers().contains(player))) {
                             if ("Dodgeball".equalsIgnoreCase(snowball.getCustomName())) {
                                 event.setCancelled(true);
+                                player.getWorld().playSound(player.getLocation(), Sound.ENTITY_PLAYER_HURT, 1, 1);
                                 if(!player.isInvulnerable()) {
                                     if (player.getHealth() - 2 > 0) {
                                         player.setHealth(player.getHealth() - 2);
                                         player.setGameMode(GameMode.SPECTATOR);
                                         RespawnTask respawnTask = new RespawnTask(arena, player);
-                                        respawnTask.runTaskLater(Dodgeball.getInstance(), 20 * 5);
+                                        respawnTask.runTaskTimer(Dodgeball.getInstance(), 20, 20);
                                         Dodgeball.getInstance().getGameManager().getRespawnTasks().put(player, respawnTask);
+                                        Dodgeball.getInstance().getGameManager().broadcast(Dodgeball.getInstance().getConfig().getString("messages.death").replace("%player%", player.getName()).replace("%killer%", shooter.getName()));
                                     } else {
-                                        player.getWorld().playSound(player.getLocation(), Sound.ENTITY_PLAYER_HURT, 1, 1);
                                         player.setGameMode(GameMode.SPECTATOR);
                                         player.sendMessage(ChatColor.translateAlternateColorCodes('&', Dodgeball.getInstance().getConfig().getString("messages.youreDeath")));
+                                        Dodgeball.getInstance().getGameManager().broadcast(Dodgeball.getInstance().getConfig().getString("messages.eliminate").replace("%player%", player.getName()).replace("%killer%", shooter.getName()));
                                         Dodgeball.getInstance().getGameManager().checkWin();
                                     }
                                 }

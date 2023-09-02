@@ -112,12 +112,12 @@ public class GameManager {
     public void checkWin(){
         int blueHealth = 0, redHealth = 0;
         for(Player pls : this.arena.getBluePlayers()){
-            if(pls.getGameMode() == GameMode.SPECTATOR && !this.respawnTasks.containsKey(pls)) {
+            if(pls.getGameMode() != GameMode.SPECTATOR || this.respawnTasks.containsKey(pls)) {
                 blueHealth += pls.getHealth();
             }
         }
         for(Player pls : this.arena.getRedPlayers()){
-            if(pls.getGameMode() == GameMode.SPECTATOR && !this.respawnTasks.containsKey(pls)) {
+            if(pls.getGameMode() != GameMode.SPECTATOR || !this.respawnTasks.containsKey(pls)) {
                 redHealth += pls.getHealth();
             }
         }
@@ -173,8 +173,8 @@ public class GameManager {
      * @param message Message to send
      */
     public void broadcast(String message){
-        this.arena.getBluePlayers().forEach(pls -> pls.sendMessage(message));
-        this.arena.getRedPlayers().forEach(pls -> pls.sendMessage(message));
+        this.arena.getBluePlayers().forEach(pls -> pls.sendMessage(ChatColor.translateAlternateColorCodes('&', message)));
+        this.arena.getRedPlayers().forEach(pls -> pls.sendMessage(ChatColor.translateAlternateColorCodes('&', message)));
     }
 
     /**

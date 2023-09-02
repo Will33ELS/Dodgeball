@@ -2,9 +2,7 @@ package fr.will33.dodgeball;
 
 import fr.will33.dodgeball.commands.ConfigurationCommand;
 import fr.will33.dodgeball.commands.JoinCommand;
-import fr.will33.dodgeball.commands.StartCommand;
-import fr.will33.dodgeball.commands.StopCommand;
-import fr.will33.dodgeball.exception.ArenaConfigurationException;
+import fr.will33.dodgeball.commands.DodgeballCommand;
 import fr.will33.dodgeball.exception.DodgeballConfigurationException;
 import fr.will33.dodgeball.manager.ConfigurationManager;
 import fr.will33.dodgeball.manager.GameManager;
@@ -37,8 +35,7 @@ public class Dodgeball extends JavaPlugin {
 
         this.getCommand("config").setExecutor(new ConfigurationCommand(this.configurationManager));
         this.getCommand("join").setExecutor(new JoinCommand(this.gameManager));
-        this.getCommand("start").setExecutor(new StartCommand());
-        this.getCommand("stop").setExecutor(new StopCommand());
+        this.getCommand("dodgeball").setExecutor(new DodgeballCommand());
     }
 
     @Override

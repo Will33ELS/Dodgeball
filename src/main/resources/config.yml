@@ -49,6 +49,8 @@ messages:
     success: "&aZone complète, effectuez la commande &b/config confirm &apour poursuivre."
     positionNull: "Les deux positions n'ont pas été défini."
     worldError: "Les deux positions ne se situent pas dans le même monde."
+  death: "&e%player% &7s'est fait toucher par &e%killer%"
+  eliminate: "&e%player% &7s'est fait éliminer par &e%killer%"
 gui:
   join:
     title: "Sélectionnez une équipe"

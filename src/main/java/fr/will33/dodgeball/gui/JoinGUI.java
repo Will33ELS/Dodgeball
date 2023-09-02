@@ -5,6 +5,7 @@ import fr.will33.dodgeball.Dodgeball;
 import fr.will33.dodgeball.manager.GameManager;
 import fr.will33.dodgeball.model.Arena;
 import fr.will33.dodgeball.utils.ItemBuilder;
+import fr.will33.guimodule.GuiModule;
 import fr.will33.guimodule.gui.AbstractGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -16,6 +17,8 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class JoinGUI extends AbstractGUI {
 
@@ -65,6 +68,11 @@ public class JoinGUI extends AbstractGUI {
                 arena.getRedPlayers().add(player);
                 player.sendMessage(ChatColor.translateAlternateColorCodes('&', this.instance.getConfig().getString("gui.join.joinRedTeam")));
                 player.closeInventory();
+            }
+        }
+        for(Map.Entry<Player, AbstractGUI> entry : GuiModule.getGuiModule().getGuiManager().getGuis().entrySet()){
+            if(entry.getValue() instanceof JoinGUI joinGUI){
+                joinGUI.onUpdate(entry.getKey());
             }
         }
     }

@@ -9,7 +9,5 @@ commands:
     description: "Configurer l'arène"
   join:
     description: "Rejoindre la partie"
-  start:
-    description: "Lancement de la partie"
-  stop:
-    description: "Arrêt de la partie"
+  dodgeball:
+    description: "Démarrer/Arrêter la partie"
