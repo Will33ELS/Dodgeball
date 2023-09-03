@@ -2,6 +2,7 @@ package fr.will33.dodgeball.listener.entity;
 
 import fr.will33.dodgeball.Dodgeball;
 import fr.will33.dodgeball.model.Arena;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -26,6 +27,9 @@ public class EntityPickupItem implements Listener {
                         event.setCancelled(true);
                     }
                     if(arena.getRedZone().isIn(item.getLocation()) && !arena.getRedPlayers().contains(player)){
+                        event.setCancelled(true);
+                    }
+                    if(player.getGameMode() == GameMode.SPECTATOR){
                         event.setCancelled(true);
                     }
                 }

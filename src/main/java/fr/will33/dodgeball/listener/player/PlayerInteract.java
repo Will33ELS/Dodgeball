@@ -3,6 +3,7 @@ package fr.will33.dodgeball.listener.player;
 import fr.will33.dodgeball.Dodgeball;
 import fr.will33.dodgeball.manager.ConfigurationManager;
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -37,12 +38,14 @@ public class PlayerInteract implements Listener {
         }
         if(event.getItem() != null && event.getItem().isSimilar(configurationManager.getBallItemStack())){
             event.setCancelled(true);
-            event.getItem().setAmount(event.getItem().getAmount() - 1);
-            Projectile projectile = player.launchProjectile(Snowball.class);
-            projectile.setShooter(player);
-            projectile.setCustomName("Dodgeball");
-            projectile.setCustomNameVisible(false);
-            projectile.setPersistent(false);
+            if(player.getGameMode() != GameMode.SPECTATOR) {
+                event.getItem().setAmount(event.getItem().getAmount() - 1);
+                Projectile projectile = player.launchProjectile(Snowball.class);
+                projectile.setShooter(player);
+                projectile.setCustomName("Dodgeball");
+                projectile.setCustomNameVisible(false);
+                projectile.setPersistent(false);
+            }
         }
     }
 

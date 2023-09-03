@@ -13,6 +13,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.Team;
 import org.bukkit.util.Vector;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -67,6 +68,29 @@ public class GameManager {
     }
 
     /**
+     * Define teams
+     */
+    private void setTeam(){
+        for(Player player : Bukkit.getOnlinePlayers()){
+            Scoreboard scoreboard = player.getScoreboard();
+            Team blue = scoreboard.getTeam("blue");
+            if(blue == null) {
+                blue = scoreboard.registerNewTeam("blue");
+            }
+            Team red = scoreboard.getTeam("red");
+            if(red == null) {
+                red = scoreboard.registerNewTeam("red");
+            }
+            for(Player bluePlayer : this.arena.getBluePlayers()){
+                blue.addPlayer(bluePlayer);
+            }
+            for(Player redPlayer : this.arena.getRedPlayers()){
+                red.addPlayer(redPlayer);
+            }
+        }
+    }
+
+    /**
      * End the game
      */
     public void endGame(){
@@ -77,13 +101,20 @@ public class GameManager {
         this.items.clear();
         this.arena.setStatut(Arena.Statut.LOBBY);
         int blueHealth = 0, redHealth = 0;
+        for(Player player : Bukkit.getOnlinePlayers()){
+            Scoreboard scoreboard = player.getScoreboard();
+            Team blue = scoreboard.getTeam("blue");
+            Team red = scoreboard.getTeam("red");
+            Optional.ofNullable(blue).ifPresent(Team::unregister);
+            Optional.ofNullable(red).ifPresent(Team::unregister);
+        }
         for(Player pls : this.arena.getBluePlayers()){
-            if(pls.getGameMode() != GameMode.SPECTATOR || !this.respawnTasks.containsKey(pls)) {
+            if(pls.getGameMode() != GameMode.SPECTATOR || this.respawnTasks.containsKey(pls)) {
                 blueHealth += pls.getHealth();
             }
         }
         for(Player pls : this.arena.getRedPlayers()){
-            if(pls.getGameMode() != GameMode.SPECTATOR || !this.respawnTasks.containsKey(pls)) {
+            if(pls.getGameMode() != GameMode.SPECTATOR || this.respawnTasks.containsKey(pls)) {
                 redHealth += pls.getHealth();
             }
         }
@@ -117,7 +148,7 @@ public class GameManager {
             }
         }
         for(Player pls : this.arena.getRedPlayers()){
-            if(pls.getGameMode() != GameMode.SPECTATOR || !this.respawnTasks.containsKey(pls)) {
+            if(pls.getGameMode() != GameMode.SPECTATOR || this.respawnTasks.containsKey(pls)) {
                 redHealth += pls.getHealth();
             }
         }
