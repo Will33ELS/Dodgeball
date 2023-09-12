@@ -7,14 +7,13 @@ import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Sound;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.inventory.ItemStack;
 
-import java.util.Optional;
 import java.util.Random;
 
 public class EntityDamageByEntity implements Listener {
@@ -47,6 +46,7 @@ public class EntityDamageByEntity implements Listener {
                                         Dodgeball.getInstance().getGameManager().broadcast(Dodgeball.getInstance().getConfig().getString("messages.eliminate").replace("%player%", player.getName()).replace("%killer%", shooter.getName()));
                                         Dodgeball.getInstance().getGameManager().checkWin();
                                     }
+                                    this.dropAllBall(player);
                                 }
                             }
                         }
@@ -54,14 +54,13 @@ public class EntityDamageByEntity implements Listener {
                 }
             }
         }
-        if(event.getDamager() instanceof Snowball snowball){
-            if ("Dodgeball".equalsIgnoreCase(snowball.getCustomName())) {
-                if(arena.getPlayZone().isIn(event.getEntity().getLocation())) {
-                    Dodgeball.getInstance().getGameManager().dropBall(event.getEntity().getLocation());
-                } else {
-                    Location loc = arena.getBallSpawn().get(new Random().nextInt(arena.getBallSpawn().size()));
-                    Dodgeball.getInstance().getGameManager().dropBall(loc);
-                }
+    }
+
+    private void dropAllBall(Player player){
+        for(ItemStack itemStack : player.getInventory().getStorageContents()){
+            if(itemStack != null && Dodgeball.getInstance().getConfigurationManager().getBallItemStack().isSimilar(itemStack)){
+                player.getInventory().removeItem(itemStack);
+                player.getWorld().dropItem(player.getLocation(), itemStack);
             }
         }
     }
